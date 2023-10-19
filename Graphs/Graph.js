@@ -3,8 +3,16 @@ class Graph {
 		this.numberOfNodes = 0;
 		this.adjacentList = {};
 	}
-	addVertex(node) {}
-	addEdge(node1, node2) {}
+	addVertex(node) {
+		this.adjacentList[node] = [];
+		this.numberOfNodes++;
+	}
+	addEdge(node1, node2) {
+		//undirected graph
+		this.adjacentList[node1].push(node2);
+		//we just reverse the same because its undirected graph
+		this.adjacentList[node2].push(node1);
+	}
 	showConnections() {
 		const allNodes = Object.keys(this.adjacentList);
 		for (let node of allNodes) {
@@ -34,3 +42,11 @@ myGraph.addEdge("0", "2");
 myGraph.addEdge("6", "5");
 
 myGraph.showConnections();
+//answer
+//0-->1 2
+//1-->3 2 0
+//2-->4 1 0
+//3-->1 4
+//4-->3 2 5
+//5-->4 6
+//6-->5
